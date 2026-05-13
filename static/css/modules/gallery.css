@@ -1,0 +1,65 @@
+/* Galerie d'images */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.gallery img.selected {
+    border-color: #3498db;
+}
+
+/* Liste d'annotations */
+.annotation-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.annotation-list h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.annotation-list ul {
+    list-style: none;
+}
+
+.annotation-list li {
+    padding: 8px;
+    background: white;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+.annotation-list li button {
+    padding: 2px 6px;
+    margin-left: 8px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

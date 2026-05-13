@@ -1,0 +1,26 @@
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .annotation-workspace {
+        flex-direction: column;
+    }
+
+    .training-params {
+        grid-template-columns: 1fr;
+    }
+
+    .class-actions {
+        flex-direction: column;
+    }
+
+    .class-actions input {
+        width: 100%;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

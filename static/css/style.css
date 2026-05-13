@@ -1,0 +1,8 @@
+/* Import des modules CSS */
+@import 'modules/base.css';
+@import 'modules/forms.css';
+@import 'modules/gallery.css';
+@import 'modules/annotation.css';
+@import 'modules/training.css';
+@import 'modules/prediction.css';
+@import 'modules/responsive.css';

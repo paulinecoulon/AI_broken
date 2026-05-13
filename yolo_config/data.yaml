@@ -1,0 +1,7 @@
+names:
+- cluster
+nc: 1
+path: ${DATASET_PATH}
+test: test/images
+train: train/images
+val: val/images

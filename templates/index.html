@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>popo AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>popo AI</h1>
+
+        <!-- Section Upload -->
+        <section class="section">
+            <h2>Upload d'Images</h2>
+            <div class="upload-zone">
+                <input type="file" id="imageUpload" accept="image/*" multiple>
+                <button id="uploadButton">Uploader</button>
+            </div>
+        </section>
+
+        <!-- Section Annotation -->
+        <section class="section">
+            <h2>Images et Annotations</h2>
+            <div class="annotation-workspace">
+                <div class="image-container">
+                    <canvas id="annotationCanvas"></canvas>
+                </div>
+                <div class="annotation-controls">
+                    <div class="class-selector">
+                        <label for="classSelect">Classe:</label>
+                        <select id="classSelect"></select>
+                        <div class="class-actions">
+                            <input type="text" id="newClass" placeholder="Nouvelle classe">
+                            <button id="addClassButton">Ajouter</button>
+                            <button id="deleteClassButton" class="delete-btn">Supprimer</button>
+                        </div>
+                    </div>
+                    
+                    <div class="draw-mode-selector">
+                        <label>Mode de dessin:</label>
+                        <div class="mode-buttons">
+                            <button id="manualDrawButton" class="mode-button active">
+                                ✋ Dessin Manuel
+                            </button>
+                            <button id="smartSelectToggle" class="mode-button">
+                                🎯 Détection Intelligente
+                            </button>
+                        </div>
+                        <p class="mode-description" id="modeDescription">Cliquez et déplacez pour tracer des cercles autour des colonies.</p>
+                    </div>
+                    
+                    <div class="annotation-list">
+                        <h3>Annotations (<span id="annotationCount">0</span>)</h3>
+                        <ul id="annotationList">
+                            <!-- Les annotations seront listées ici -->
+                        </ul>
+                    </div>
+                    <button id="saveAnnotationsButton" class="save-button">Sauvegarder</button>
+                </div>
+            </div>
+            <div class="gallery" id="imageGallery">
+                <!-- Les images seront ajoutées ici dynamiquement -->
+            </div>
+        </section>
+
+        <!-- Section Entraînement -->
+        <section class="section">
+            <h2>Entraînement du Modèle YOLO</h2>
+            <div class="training-controls">
+                <div class="training-params">
+                    <div class="param-group">
+                        <label for="epochs">Époques:</label>
+                        <input type="number" id="epochs" value="300" min="1">
+                        <p class="param-description">Nombre de fois que le modèle parcourt l'ensemble du dataset. Une valeur plus élevée permet un meilleur apprentissage mais augmente le temps d'entraînement.</p>
+                    </div>
+                    
+                    <div class="param-group">
+                        <label for="batchSize">Taille du batch:</label>
+                        <input type="number" id="batchSize" value="3" min="1">
+                        <p class="param-description">Nombre d'images traitées simultanément. Défini automatiquement selon le nombre d'images dans le dataset.</p>
+                    </div>
+                    
+                    <div class="param-group">
+                        <label for="imgSize">Taille d'image:</label>
+                        <input type="number" id="imgSize" value="1280" min="32" step="32">
+                        <p class="param-description">Taille de redimensionnement des images pour l'entraînement. Une plus grande taille améliore la précision mais augmente la mémoire requise.</p>
+                    </div>
+                </div>
+                <button id="trainButton">Entraîner le Modèle</button>
+                <div id="trainingStatus" class="training-status">
+                    <div class="metrics" id="currentMetrics">
+                        <!-- Les métriques courantes seront affichées ici -->
+                    </div>
+                    <div class="training-logs-container">
+                        <div class="training-logs-header">
+                            <button id="autoScrollToggle" class="auto-scroll-toggle active" title="Activer/Désactiver le défilement automatique">
+                                <span class="toggle-icon">📜</span>
+                                <span class="toggle-text">Auto-scroll</span>
+                            </button>
+                        </div>
+                        <div class="training-logs">
+                            <pre id="trainingLogs"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Prédiction -->
+        <section class="section">
+            <h2>Tester le Modèle</h2>
+            <div class="prediction-zone">
+                <div class="prediction-input">
+                    <div class="model-version-selector">
+                        <label for="modelVersion">Version du modèle:</label>
+                        <select id="modelVersion">
+                            <option value="">Dernière version</option>
+                            <!-- Les versions seront chargées dynamiquement -->
+                        </select>
+                    </div>
+                    <div class="prediction-controls">
+                        <input type="file" id="predictionUpload" accept="image/*">
+                        <button id="predictButton">Prédire</button>
+                    </div>
+                </div>
+                <div class="prediction-display">
+                    <canvas id="predictionCanvas"></canvas>
+                    <div id="predictionResult" class="prediction-result">
+                        <!-- Les résultats de prédiction seront affichés ici -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
